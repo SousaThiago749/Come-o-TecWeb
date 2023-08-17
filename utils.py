@@ -1,17 +1,10 @@
 import json
 
 def extract_route(request):
-    rota = ""
-    contador = 0
-    for letra in request:
-        if letra == "/":
-            contador = 1
-        if contador == 1:
-            rota += str(letra)
-        if contador == 1 and letra == " ":
-            rota = rota[1:]
-            rota = rota.replace(" ","")
-            return rota
+    barra = request.find('/')
+    http = request.find('HTTP')
+    rota = request[barra+1:http-1]
+    return rota
         
 
 def read_file(path):
