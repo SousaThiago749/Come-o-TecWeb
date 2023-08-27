@@ -24,3 +24,12 @@ def load_template(arquivo):
     with open(path, 'r', encoding='utf-8') as arq:
         conteudo = arq.read()
     return conteudo
+
+def build_response(body='', code=200, reason='OK', headers=''):
+    response = f'HTTP/1.1 {code} {reason}\n'
+    if headers:
+        response += f'{headers}\n'
+    response += '\n\n'
+    if body:
+        response += f'{body}'
+    return response.encode()

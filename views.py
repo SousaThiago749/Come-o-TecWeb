@@ -1,4 +1,4 @@
-from utils import load_data, load_template
+from utils import load_data, load_template, build_response
 import urllib
 
 
@@ -19,6 +19,7 @@ def index(request):
             texto = chave_valor.split("=")
             params[texto[0]] = urllib.parse.unquote_plus(texto[1],encoding="UTF-8", errors="replace")
             #params[texto[0]] = texto[1].replace("+"," ")
+            return build_response(code=303, reason='See Other', headers='Location: /')
             
 
     # O RESTO DO CÓDIGO DA FUNÇÃO index CONTINUA DAQUI PARA BAIXO...
@@ -31,4 +32,5 @@ def index(request):
     ]
     notes = '\n'.join(notes_li)
 
-    return load_template('index.html').format(notes=notes).encode()
+
+    return build_response(load_template('index.html').format(notes=notes))
