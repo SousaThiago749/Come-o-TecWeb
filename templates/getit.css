@@ -1,0 +1,263 @@
+/*
+Algumas informações úteis e dicas:
+- Fontes disponíveis:
+	font-family: 'Roboto', sans-serif;
+	font-family: 'Permanent Marker', cursive;
+- Cores:
+	Tons de amarelo:
+	#e4fc2b
+	#e0d426
+	#f7d736
+	#e0af26
+	#fcb02b
+	Tons de cinza:
+	#2c2c2c
+	#4c4c4c
+	Cores dos cards:
+	#ead3a7
+	#9de0f5
+	#ef89ba
+	#fae890
+	#abe9c1
+- Sombra: https://codepen.io/sdthornton/pen/wBZdXq
+*/
+
+html,
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+/* TOPO */
+
+.appbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+	background-color: #f7d736;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.logo {
+    margin: 15px; 
+    width: 75px;
+    height: auto;
+}
+
+.subtitle {
+    margin: 10px;
+}
+
+
+/* FORMS */
+.form-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 90px auto; /* Adjust the margin as needed */
+	max-width: 600px; /* Adjust the maximum width as needed */
+	border-radius: 10px;
+	background-color: #ffffff;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+}
+
+.form-card-title { /*titulo*/
+	margin: 5px;
+	width: 100%;
+	padding: 8px;
+	border: 0px solid #ccc;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: medium;
+	font-weight: bold;
+}
+
+.autoresize { /*conteudo*/
+	margin: 10px;
+	width: 100%;
+	padding: 8px;
+	border: 0px solid #ccc;
+	box-sizing: border-box;
+	text-align: left;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.btn { /*criar*/
+	margin: 10px;
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	text-align: center;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.autoresize {
+	height: 30px; /* Adjust the initial height as needed */
+	overflow-y: hidden;
+}
+
+.btn {
+	background-color: #f7d736;
+	/* background-color: red; */
+	color: #2c2c2c;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+
+/* CARDS */
+
+.card-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+	padding: 50px;
+}
+
+.card {
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+	padding: 20px;
+	position: relative;
+	overflow: hidden;
+}
+
+.card:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+}
+
+.card-title {
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+	font-family: 'Permanent Marker', cursive;
+}
+
+.card-content {
+	font-size: small;
+	color: #4c4c4c;
+	font-family: 'Permanent Marker', cursive;
+}
+
+.card-color-1 {
+	background-color: #fae890;
+}
+.card-color-2 {
+	background-color:  #9de0f5;
+}
+
+.card-color-3 {
+	background-color: #abe9c1;
+}
+.card-color-4 {
+	background-color: #ead3a7;
+}
+
+.card-color-5 {
+	background-color: #ef89ba;
+}
+
+
+.card-rotation-1 {
+	transform: rotate(-2deg);
+}
+.card-rotation-2 {
+	transform: rotate(2deg);
+}
+.card-rotation-3 {
+	transform: rotate(-1deg);
+}
+.card-rotation-4 {
+	transform: rotate(1deg);
+}
+.card-rotation-5 {
+	transform: rotate(-3deg);
+}
+
+.card-rotation-6 {
+	transform: rotate(-3deg);
+}
+.card-rotation-7 {
+	transform: rotate(3deg);
+}
+.card-rotation-8 {
+	transform: rotate(-1deg);
+}
+.card-rotation-9 {
+	transform: rotate(1deg);
+}
+.card-rotation-10 {
+	transform: rotate(-2deg);
+}
+.card-rotation-11 {
+	transform: rotate(-3deg);
+}
+
+
+
+
+/* Você pode usar o CSS comentado abaixo, se ajudar */
+/* Fonte: https://codepen.io/CrisWoler/pen/ogXBLj */
+/* .btn {
+position: relative;
+display: block;
+padding: 10px 15px;
+
+overflow: hidden;
+
+border-width: 0;
+outline: none;
+border-radius: 2px;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+background-color: #f7d736;
+
+transition: background-color 0.3s;
+}
+
+.btn > * {
+position: relative;
+}
+
+.btn:before {
+content: "";
+
+position: absolute;
+top: 50%;
+left: 50%;
+
+display: block;
+width: 0;
+padding-top: 0;
+
+border-radius: 100%;
+
+background-color: rgba(236, 240, 241, 0.3);
+
+-webkit-transform: translate(-50%, -50%);
+-moz-transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+-o-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+width: 120%;
+padding-top: 120%;
+
+transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+} */

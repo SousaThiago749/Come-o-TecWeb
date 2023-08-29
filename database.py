@@ -23,15 +23,15 @@ class Database:
         cursor = self.conn.execute("SELECT id, title, content FROM note")
         lista = []
         for linha in cursor:
-            identificador = linha[0]
-            titulo = linha[1]
-            conteudo = linha[2]
-            lista.append(Note(id=identificador, title=titulo, content=conteudo))
+            id = linha[0]
+            title = linha[1]
+            content = linha[2]
+            lista.append(Note(id=id, title=title, content=content))
         
         return lista
 
-    def update(self, entry):
-        self.conn.execute("UPDATE note SET title = ?, content = ? WHERE id = ?", (entry.title,entry.content, entry.id))
+    def update(self, note):
+        self.conn.execute("UPDATE note SET title = ?, content = ? WHERE id = ?", (note.title,note.content, note.id))
         self.conn.commit()
     
     def delete(self, note_id):
