@@ -1,6 +1,7 @@
 from utils import load_data, load_template, build_response
-from database import Database
-import urllib
+from database import *
+from urllib.parse import unquote_plus
+from exemplo_de_uso import db
 
 #importar objeto
 #comecar com um objeto no inicio do index
@@ -21,10 +22,13 @@ def index(request):
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
         for chave_valor in corpo.split('&'):
-            texto = chave_valor.split("=")
-            params[texto[0]] = urllib.parse.unquote_plus(texto[1],encoding="UTF-8", errors="replace")
-            #params[texto[0]] = texto[1].replace("+"," ")
-            return build_response(code=303, reason='See Other', headers='Location: /')
+            titulo,texto = chave_valor.split("=")
+            params[titulo] = unquote_plus(texto)
+        
+        db = Database('banco')
+        db.add(Note(title=(params['titulo']), content=(params['detalhes'])))
+
+        return build_response(code=303, reason='See Other', headers='Location: /')
             
 
     # O RESTO DO CÓDIGO DA FUNÇÃO index CONTINUA DAQUI PARA BAIXO...
@@ -32,7 +36,7 @@ def index(request):
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
     notes_li = [
-        note_template.format(title=dados['titulo'], details=dados['detalhes'])
+        note_template.format(title=dados.title, details=dados.content)
         #for dados in load_data('notes.json')
         for dados in load_data()
     ]
